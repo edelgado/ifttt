@@ -23,9 +23,9 @@ Go to [ifttt.meteor.com](http://ifttt.meteor.com) or, if you have meteor install
 
 ### What design decisions I made
 
-I decided to use [Meteor](http://www.meteor.com/) because it is a framework that I've been interested in and this seems like a great opportunity to develop an app with it. Even if I don't land the apprenticeship, I would at least take with me the knowledge I gathered while writing this app :-].
+I decided to use [Meteor](http://www.meteor.com/) because it is a server-side JavaScript (it's based on Node.js) framework that I've been interested in and this seems like a great opportunity to develop an app with it. Even if I don't land the apprenticeship, I would at least take with me the knowledge I gathered while writing this app :-].
 
-Meteor also allows me to easily 
+Meteor also allows me to easily deploy to the meteor.com servers so that you fine folks at IFTTT can just go to the app. No complicated installation on your side.
 
 ### How I tested my app
 
