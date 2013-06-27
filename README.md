@@ -1,7 +1,5 @@
-ifttt
-=====
-
-If This Then That Apprentice Project
+Enrique Delgado's IFTTT Apprenticeship Project
+==============================================
 
 ## I. Free responses
 
