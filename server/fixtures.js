@@ -36,7 +36,7 @@ if (People.find().count() === 0) {
 
   People.insert({
     name: 'Casey',
-    email: 'casey@example.com'
+    email: 'casey@example.com',
   });
 
   People.insert({
