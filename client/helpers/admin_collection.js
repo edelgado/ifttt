@@ -35,4 +35,15 @@ adminCurrentCollectionName = function() {
   return Session.get('currentAdminCollection');
 }
 
+adminCurrentCollectionOptionsName = function(){
+  switch (adminCurrentCollectionName()) {
+    case 'People':
+      return 'Teams';
+      break;
+    case 'Teams':
+      return 'People';
+      break;
+  }  
+}
+
 

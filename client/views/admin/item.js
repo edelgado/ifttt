@@ -1,6 +1,6 @@
 Template.item.helpers({
   optionLabel: function() {
-    return adminCurrentCollectionName();
+    return adminCurrentCollectionOptionsName();
   }
 });
 
