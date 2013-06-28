@@ -1,3 +1,16 @@
 <template name="item">
-  <p>{{name}} <a class="btn" href=''>{{optionLabel}}</a> <a class="btn btn-danger delete" href=''><i class="icon-minus-sign"></i></a><p> 
+  <p>{{name}} <a class="btn" href=''>{{optionLabel}}</a> <a class="btn btn-danger" data-toggle="modal" href='#deleteModal_{{this._id}}'><i class="icon-minus-sign"></i></a><p> 
+  <div id="deleteModal_{{this._id}}" class="modal hide fade">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h3>On Noes!</h3>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure you want to delete <b>{{name}}</b>?</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn" data-dismiss="modal">Oops, no get me outta here!</a>
+      <a href="#" class="btn btn-danger delete" data-dismiss="modal">I'm sure</a>
+    </div>
+  </div>
 </template>
