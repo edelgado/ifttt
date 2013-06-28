@@ -1,17 +1,24 @@
 <template name="header">
   <header class="navbar">
     <div class="navbar-inner">
-      <a class="brand" href="/"><i class="icon-home"></i> 1&plus;1</a>
-      <ul class="nav pull-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="{{adminPeoplePath}}"><i class="icon-user"></i> People</a></li>
-            <li class="divider"></li>
-            <li><a href="{{adminTeamsPath}}"><i class="icon-th"></i> Teams</a></li>
-          </ul>
-        </li>
-      </ul>
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="{{assignmentsPath}}"><i class="icon-home"></i> IFTTT's One-on-One Machine</a>
+      <div class="nav-collapse collapse">
+        <ul class="nav pull-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="{{adminPeoplePath}}"><i class="icon-user"></i> People</a></li>
+              <li class="divider"></li>
+              <li><a href="{{adminTeamsPath}}"><i class="icon-th"></i> Teams</a></li>
+            </ul>
+          </li>
+        </ul>        
+      </div>
     </div>
   </header>
 </template>
