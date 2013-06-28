@@ -1,3 +1,5 @@
 Meteor.Router.add({
-  '/': 'assignments'
+  '/': 'assignments',
+  '/people': 'peopleList',
+  '/teams': 'teamList'
 });
