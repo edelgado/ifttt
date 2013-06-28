@@ -44,3 +44,13 @@ if (People.find().count() === 0) {
     email: 'william@example.com'
   });
 }
+
+if (Teams.find().count() === 0) {
+  Teams.insert({
+    name: 'Team 1'
+  });
+
+  Teams.insert({
+    name: 'Team 2'
+  });
+}
