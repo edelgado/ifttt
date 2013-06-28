@@ -27,7 +27,11 @@ I decided to use [Meteor](http://www.meteor.com/) because it is a server-side Ja
 
 Meteor also allows me to easily deploy to the meteor.com servers so that you fine folks at IFTTT can just go to the app. No complicated installation on your side.
 
-For the front-end, I'm using [Bootstrap](http://twitter.github.io/bootstrap/) since I'm already somewhat familiar with it and it gives me a great starting point for a great looking app. I like to start by [drawing UI ideas on paper](http://campl.us/cmguAJlqokm). 
+For the front-end, I'm using [Bootstrap](http://twitter.github.io/bootstrap/) since I'm already somewhat familiar with it and it gives me a great starting point for a great looking app. I like to start by [drawing UI ideas on paper](http://campl.us/cmguAJlqokm).
+
+Security: The app does not require logging in. This is just for simplicity sake. I wanted to spend time working on the minimum viable app before adding features that weren't part of the specs.
+
+Reusability: The admin shares layouts, partials and logic for both Teams and People. Keepin' it DRY folks.
 
 ### How I tested my app
 

@@ -1,12 +1,16 @@
 Template.item.helpers({
   optionLabel: function() {
-    switch (Session.get('currentAdminCollection')) {
-      case 'People':
-        return 'Teams';
-        break;
-      case 'Teams':
-        return 'People';
-        break;
+    return adminCurrentCollectionName();
+  }
+});
+
+Template.item.events({
+  'click .delete': function(e) {
+    e.preventDefault();
+
+    if (confirm("Oh noes, are you sure?")) {
+      var currentPostId = Session.get('currentPostId');
+      adminCurrentCollectionRemove(this._id);
     }
   }
 });
