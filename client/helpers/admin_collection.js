@@ -31,6 +31,17 @@ adminCurrentCollectionRemove = function(id) {
   }
 }
 
+adminOptionPath = function(id) {
+  switch (adminCurrentCollectionName()) {
+    case 'Teams':
+      return Meteor.Router.teamMembersPath(id);
+      break;
+    case 'People':
+      return Meteor.Router.personTeamsPath(id);
+      break;      
+  }  
+}
+
 adminCurrentCollectionName = function() {
   return Session.get('currentAdminCollection');
 }

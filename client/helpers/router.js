@@ -15,5 +15,21 @@ Meteor.Router.add({
     and: function() {
       Session.set('currentAdminCollection', 'Teams');
     }
+  },
+  '/admin/team/:_id/members': {
+    as: 'teamMembers',
+    to: 'memberships',
+    and: function(id) {
+      Session.set('currentAdminCollection', 'Teams');
+      Session.set('currentItemId', id);
+    }
+  },
+  '/admin/person/:_id/teams': {
+    as: 'personTeams',
+    to: 'memberships',
+    and: function(id) {
+      Session.set('currentAdminCollection', 'People');
+      Session.set('currentItemId', id);
+    }
   }
 });

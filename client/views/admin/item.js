@@ -1,6 +1,9 @@
 Template.item.helpers({
   optionLabel: function() {
     return adminCurrentCollectionOptionsName();
+  },
+  optionHref: function() {
+    return adminOptionPath(this._id);
   }
 });
 

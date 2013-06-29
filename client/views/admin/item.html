@@ -1,4 +1,4 @@
 <template name="item">
-  <p>{{name}} <a class="btn" href=''>{{optionLabel}}</a> <a class="btn btn-danger" data-toggle="modal" href='#deleteModal_{{this._id}}'><i class="icon-remove"></i></a><p> 
+  <p>{{name}} <a class="btn" href='{{optionHref}}'>{{optionLabel}}</a> <a class="btn btn-danger" data-toggle="modal" href='#deleteModal_{{this._id}}'><i class="icon-remove"></i></a><p> 
   {{> itemDelete}}
 </template>
