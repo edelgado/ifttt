@@ -1,0 +1,18 @@
+<template name="memberships">
+    <div class="span12">
+      <form>
+        <fieldset>
+          <legend>Settings</legend>
+          {{#each options}}
+            {{> membershipStatus}}
+          {{/each}}
+        </fieldset>
+      </form>
+    </div>
+</template>
+<template name="membershipStatus">
+  <label class="checkbox">
+    <input type="checkbox" value="">
+    {{optionName}} 
+  </label>
+</template>
