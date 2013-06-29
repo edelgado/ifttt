@@ -31,8 +31,22 @@ For the front-end, I'm using [Bootstrap](http://twitter.github.io/bootstrap/) si
 
 Security: The app does not require logging in. This is just for simplicity sake. I wanted to spend time working on the minimum viable app before adding features that weren't part of the specs.
 
-Reusability: The admin shares layouts, partials and logic for both Teams and People. Keepin' it DRY folks.
+Reusability: The admin shares layouts, partials and logic for both Teams and People. Keepin' it DRY folks. UPDATE: I may have gone too far trying to re-use layouts. It complicated my Meteor "managers" a little bit.
+
+An idea I had, but that I didn't have time to go in and refactor things, is to admin people and teams in a global matrix way, example:
+<pre>
+  People/Teams | Team 1 | Team 2 | [Add Button]
+  Elizabeth    |  [x]   |  [ ]   | 
+  Angela       |  [ ]   |  [x]   | 
+  Sophia       |  [x]   |  [ ]   | 
+  Casey        |  [ ]   |  [x]   | 
+  Ludwig       |  [x]   |  [x]   | 
+  William      |  [ ]   |  [x]   | 
+  Vinny        |  [x]   |  [ ]   | 
+  Stacey       |  [x]   |  [ ]   | 
+  [Add Button]
+</pre>
 
 ### How I tested my app
 
-TBD
+Using fixtures to provide a stable starting point from which to begin the app and verify functionality.
