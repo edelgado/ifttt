@@ -9,7 +9,9 @@ Meteor.methods({
     if (personWithSameEmail) {
       throw new Meteor.Error(409, 'A person with the same email already exists.');
     }
-    var person = _.pick(aPerson, 'name', 'email');
+    var person = _.extend(_.pick(aPerson, 'name', 'email'), {
+      recentPairings: []
+    });
     return People.insert(person);
   }
 });

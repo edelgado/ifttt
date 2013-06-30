@@ -1,42 +1,50 @@
 if (People.find().count() === 0) {
   People.insert({
     name: 'Elizabeth',
-    email: 'elizabeth@example.com'
+    email: 'elizabeth@example.com',
+    recentPairings: []
   });
   
   People.insert({
     name: 'Sophia',
-    email: 'sophia@example.com'
+    email: 'sophia@example.com',
+    recentPairings: []
   });
   
   People.insert({
     name: 'Ludwig',
-    email: 'ludwig@example.com'
+    email: 'ludwig@example.com',
+    recentPairings: []
   });
   
   People.insert({
     name: 'Vinny',
-    email: 'vinny@example.com'
+    email: 'vinny@example.com',
+    recentPairings: []
   });
   
   People.insert({
     name: 'Stacey',
-    email: 'stacey@example.com'
+    email: 'stacey@example.com',
+    recentPairings: []
   });
 
   People.insert({
     name: 'Angela',
-    email: 'angela@example.com'
+    email: 'angela@example.com',
+    recentPairings: []
   });
 
   People.insert({
     name: 'Casey',
     email: 'casey@example.com',
+    recentPairings: []
   });
 
   People.insert({
     name: 'William',
-    email: 'william@example.com'
+    email: 'william@example.com',
+    recentPairings: []
   });
 }
 
