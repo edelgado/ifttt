@@ -46,6 +46,7 @@ An idea I had, but that I didn't have time to go in and refactor things, is to a
   Stacey       |  [x]   |  [ ]   | 
   [Add Button]
 </pre>
+Maybe next time!
 
 ### How I tested my app
 
