@@ -1,6 +1,11 @@
 <template name="adminList">
   {{#each items}}
-    {{> item}}
+    <div class="row-fluid">
+      <div class="span6">
+        {{> item}}
+      </div>
+      <div class="span6"><div>
+    </div>
   {{/each}}
   {{> newItem}}
 </template>

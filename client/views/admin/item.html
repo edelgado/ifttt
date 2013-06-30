@@ -1,9 +1,13 @@
 <template name="item">
-  <p>{{name}} 
+  <div class="row-fluid admin-list">
+  <div class="span6"><h4>{{name}}<h2></div>
+  <div class="span6">
     {{#if isPerson}}
       <a href="mailto:{{email}}" class="btn"><i class="icon-envelope"></i></a>
     {{/if}}
-    <a class="btn btn-info" href='{{optionHref}}'>{{optionLabel}}</a> <a class="btn btn-danger" data-toggle="modal" href='#deleteModal_{{this._id}}'><i class="icon-remove"></i></a>
-  <p> 
+    <a class="btn btn-info" href='{{optionHref}}'>{{optionLabel}}</a>
+    <a class="btn btn-danger" data-toggle="modal" href='#deleteModal_{{this._id}}'><i class="icon-remove"></i></a>
+  </div>
+  </div>
   {{> itemDelete}}
 </template>
