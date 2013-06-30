@@ -127,6 +127,7 @@ if (Memberships.find().count() === 0) {
   });  
 }
 
+/*
 if (Pairings.find().count() === 0) {
   // Team 1 pairings
   var team = Teams.findOne({name: 'Team 1'});
@@ -165,3 +166,4 @@ if (Pairings.find().count() === 0) {
     secondId: secondPerson._id
   });
 }
+*/
