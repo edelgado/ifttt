@@ -118,3 +118,42 @@ if (Memberships.find().count() === 0) {
     teamId: team._id
   });  
 }
+
+if (Pairings.find().count() === 0) {
+  // Team 1 pairings
+  var team = Teams.findOne({name: 'Team 1'});
+  // A pairing:
+  var firstPerson = People.findOne({email: 'elizabeth@example.com'});
+  var secondPerson = People.findOne({email: 'vinny@example.com'});
+  Pairings.insert({
+    teamId: team._id,
+    firstId: firstPerson._id,
+    secondId: secondPerson._id
+  });
+  // A pairing:
+  var firstPerson = People.findOne({email: 'sophia@example.com'});
+  var secondPerson = People.findOne({email: 'stacey@example.com'});
+  Pairings.insert({
+    teamId: team._id,
+    firstId: firstPerson._id,
+    secondId: secondPerson._id
+  });
+  // Team 2 pairings
+  var team = Teams.findOne({name: 'Team 2'});
+  // A pairing:
+  var firstPerson = People.findOne({email: 'angela@example.com'});
+  var secondPerson = People.findOne({email: 'casey@example.com'});
+  Pairings.insert({
+    teamId: team._id,
+    firstId: firstPerson._id,
+    secondId: secondPerson._id
+  });
+  // A pairing:
+  var firstPerson = People.findOne({email: 'william@example.com'});
+  var secondPerson = People.findOne({email: 'ludwig@example.com'});
+  Pairings.insert({
+    teamId: team._id,
+    firstId: firstPerson._id,
+    secondId: secondPerson._id
+  });
+}
