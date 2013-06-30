@@ -1,0 +1,1 @@
+UserMessages = new Meteor.Collection('userMessages');

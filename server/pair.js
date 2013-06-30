@@ -7,11 +7,11 @@ Meteor.methods({
     console.log('\n-=> Hardcore pairing action... <=-');
     // Reset:
     folksPaired = [];
-    // Clear the pairings collection (powers the UI)
+    // Clear the pairings collection and messages (powers the UI)
     Pairings.remove({});
+    UserMessages.remove({});
     // Get an array of everyone (each element is an object), shuffled:
     var allPeeps = _.shuffle(People.find().fetch());
-    //var allPeeps = People.find().fetch();
     // Select a pair for everyone in the organization:
     _.each(allPeeps, selectOnePair);
   }
@@ -60,6 +60,7 @@ var selectOnePair = function(aPerson, index, allPeeps) {
     if (_.difference(myTeammateIds,folksPaired).length === 0) {
       // It's possible to be a lone ranger sometimes!
       console.log('=> ' + aPerson.name + ' is doing a solo round');
+      UserMessages.insert({message: aPerson.name + ' is doing a solo round.'});
       return;
     }
     // It wasn't that. Let's see if I have met with everyone in my team, then:
@@ -68,6 +69,7 @@ var selectOnePair = function(aPerson, index, allPeeps) {
       console.log(aPerson.name + ' seems to have met with everyone in their team, so lets call an old friend.');
     } else {
       console.log(aPerson.name + ' hasn\'t met with everyone yet, but the other teammates are taken, so it may get the same teammate as last time');
+      //UserMessages.insert({message: aPerson.name + ' hasn\'t met with everyone yet, but the other teammates are taken, so it may get the same teammate as last time.'});
     }
     //console.log('Teammates: ' + myTeammateIds + '\nHistory: ' + aPerson.recentPairings + '\nAlready Paired:' + folksPaired);
     // Adjust history. Lets take out the oldest person I paired with:

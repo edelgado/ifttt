@@ -1,0 +1,12 @@
+<template name="userMessages">
+  {{#if show}}
+  <div class="alert">
+    <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
+    <ul>
+      {{#each messages}}
+      <li>{{message}}</li>
+      {{/each}}
+    </ul>
+  </div>
+  {{/if}}
+</template>
