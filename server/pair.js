@@ -4,7 +4,7 @@ var folksPaired;
 
 Meteor.methods({
   pairFolks: function(id) {
-    console.log('Hardcore pairing action...');
+    console.log('-=> Hardcore pairing action... <=-');
     // Reset:
     folksPaired = [];
     // Get an array of everyone (each element is an object), shuffled:
@@ -35,13 +35,19 @@ var selectOnePair = function(aPerson, index, allPeeps) {
     // There are still teammates we haven't paired with.
     var luckyWinnerId = availableFolks[_.random(0, availableFolks.length - 1)];
     var luckyWinner = People.findOne({_id: luckyWinnerId});
-    console.log('Paired with: ' + luckyWinner.name);
+    console.log('Paired with: ' + luckyWinner.name + "\n");
     // Mark me and the lucky winner as "done". This will prevent one person
     // from being pared twice in one round.
     folksPaired.push(aPerson._id, luckyWinnerId);
-    console.log(folksPaired);
+    //console.log(folksPaired);
     return;
   } else if (availableFolks.length === 0) {
+    // Is it because every other person in my team has been paired already?
+    if (_.difference(myTeammateIds,folksPaired).length === 0) {
+      // It's possible to be a lone ranger sometimes!
+      console.log('Is going solo this round.');
+      return;
+    }
     // Adjust history. Lets take out the oldest person I paired with:
     var updatedPairings = _.rest(aPerson.recentPairings, 0);
     People.update({_id: aPerson._id}, {$set: {recentPairings: updatedPairings}});
