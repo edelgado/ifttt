@@ -25,7 +25,6 @@ var selectOnePair = function(aPerson, index, allPeeps) {
   if (_.indexOf(folksPaired, aPerson._id) != -1) {
     return;
   }
-  console.log("Choosing a pair for " + aPerson.name);
   // Who all are my teammates? (I could be in more than one team!)
   var myTeammateIds = teammateIdsForPerson(aPerson._id);
   // Who have I not met with yet in the past, and that have not been paired yet in this round?
@@ -35,7 +34,7 @@ var selectOnePair = function(aPerson, index, allPeeps) {
     // There are still teammates we haven't paired with.
     var luckyWinnerId = availableFolks[_.random(0, availableFolks.length - 1)];
     var luckyWinner = People.findOne({_id: luckyWinnerId});
-    console.log('Paired with: ' + luckyWinner.name + "\n");
+    console.log('=> ' + aPerson.name + ' <> ' + luckyWinner.name);
     // Mark me and the lucky winner as "done". This will prevent one person
     // from being pared twice in one round.
     folksPaired.push(aPerson._id, luckyWinnerId);
@@ -45,7 +44,7 @@ var selectOnePair = function(aPerson, index, allPeeps) {
     // Is it because every other person in my team has been paired already?
     if (_.difference(myTeammateIds,folksPaired).length === 0) {
       // It's possible to be a lone ranger sometimes!
-      console.log('Is going solo this round.');
+      console.log('=> ' + aPerson.name + ' is doing a solo round');
       return;
     }
     // Adjust history. Lets take out the oldest person I paired with:
