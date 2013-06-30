@@ -4,6 +4,9 @@ Template.item.helpers({
   },
   optionHref: function() {
     return adminOptionPath(this._id);
+  },
+  isPerson: function() {
+   return (adminCurrentCollectionName() === 'People');
   }
 });
 
