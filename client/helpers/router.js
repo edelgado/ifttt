@@ -33,3 +33,10 @@ Meteor.Router.add({
     }
   }
 });
+Meteor.Router.filters({
+  'clearErrors': function(page) {
+    clearErrors();
+    return page;
+  }
+});
+Meteor.Router.filter('clearErrors');
