@@ -7,6 +7,7 @@ Meteor.methods({
     console.log('-=> Hardcore pairing action... <=-');
     // Reset:
     folksPaired = [];
+    
     // Get an array of everyone (each element is an object), shuffled:
     var allPeeps = _.shuffle(People.find().fetch());
     // Select a pair for everyone in the organization:
@@ -25,10 +26,13 @@ var selectOnePair = function(aPerson, index, allPeeps) {
   if (_.indexOf(folksPaired, aPerson._id) != -1) {
     return;
   }
+  //console.log('Looking at ' + aPerson.name + '\nHistory: ' + aPerson.recentPairings);
   // Who all are my teammates? (I could be in more than one team!)
   var myTeammateIds = teammateIdsForPerson(aPerson._id);
   // Who have I not met with yet in the past, and that have not been paired yet in this round?
   var availableFolks = _.difference(myTeammateIds, aPerson.recentPairings, folksPaired);
+  //console.log('Looking at ' + aPerson.name + ', availableFolks: ' + availableFolks);
+  //console.log('Teammates: ' + myTeammateIds + '\nHistory: ' + aPerson.recentPairings + '\nAlready Paired:' + folksPaired);
   //console.log('From available teammates: ' + availableFolks);
   if (availableFolks.length > 0) {
     // There are still teammates we haven't paired with.
@@ -37,6 +41,8 @@ var selectOnePair = function(aPerson, index, allPeeps) {
     console.log('=> ' + aPerson.name + ' <> ' + luckyWinner.name);
     // Mark me and the lucky winner as "done". This will prevent one person
     // from being pared twice in one round.
+    addToHistory(aPerson._id, luckyWinnerId);
+    addToHistory(luckyWinnerId, aPerson._id);
     folksPaired.push(aPerson._id, luckyWinnerId);
     //console.log(folksPaired);
     return;
@@ -47,11 +53,16 @@ var selectOnePair = function(aPerson, index, allPeeps) {
       console.log('=> ' + aPerson.name + ' is doing a solo round');
       return;
     }
+    // It wasn't that. Let's see if I have met with everyone in my team, then:
+    /* var availableFolks = _.difference(myTeammateIds, aPerson.recentPairings);*/
+    console.log(aPerson.name + ' seems to have met with everyone in their team, so lets call an old friend.');
+    //console.log('Teammates: ' + myTeammateIds + '\nHistory: ' + aPerson.recentPairings + '\nAlready Paired:' + folksPaired);
     // Adjust history. Lets take out the oldest person I paired with:
-    var updatedPairings = _.rest(aPerson.recentPairings, 0);
+    var updatedPairings = _.tail(aPerson.recentPairings);
     People.update({_id: aPerson._id}, {$set: {recentPairings: updatedPairings}});
+    var thisPerson = People.findOne({_id: aPerson._id});
     // Try this again (via recursion):
-    selectOnePair(aPerson);
+    selectOnePair(thisPerson);
   }
 }
 
@@ -85,4 +96,15 @@ var teamIdsForPerson = function(personId) {
       myTeamIds.push(element.teamId);
   });
   return myTeamIds;
+}
+
+/**
+  * Given a person Id, add another person Id to their
+  * list of recent pairings.
+  */
+var addToHistory = function(leftId, rightId) {
+  var leftPerson = People.findOne({_id: leftId});
+  var leftRecentPairings = leftPerson.recentPairings;
+  leftRecentPairings.push(rightId);
+  People.update({_id: leftId}, {$set: {recentPairings: leftRecentPairings}});
 }
