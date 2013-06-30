@@ -12,10 +12,10 @@ adminCurrentCollectionCursor = function() {
 adminCurrentCollectionAdd = function(item) {
   switch (adminCurrentCollectionName()) {
     case 'People':
-      return People.insert(item);
+      return Meteor.call('addPerson', item);
       break;
     case 'Teams':
-      return Teams.insert(item);
+      return Meteor.call('addTeam', item);
       break;
   }
 }
@@ -23,10 +23,10 @@ adminCurrentCollectionAdd = function(item) {
 adminCurrentCollectionRemove = function(id) {
   switch (adminCurrentCollectionName()) {
     case 'People':
-      People.remove(id);
+      Meteor.call('removePerson', id);
       break;
     case 'Teams':
-      Teams.remove(id);
+      Meteor.call('removeTeam', id);
       break;
   }
 }
