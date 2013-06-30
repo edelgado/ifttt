@@ -19,11 +19,11 @@ We are just beginning our understanding of the Colossal Squid in its natural hab
 
 ### Instructions on how to run and use the app
 
-Go to [ifttt.meteor.com](http://ifttt.meteor.com) or, if you have meteor installed, you can run it by typing `meteor` in the app directory. Then go to http://localhost:3000/ to visit the app.
+Go to [ifttt.meteor.com](http://ifttt.meteor.com) or, if you have meteor installed, you can run it by typing `meteor` in the app directory. Then go to http://localhost:3000/ to visit the app. The app outputs some interesting logs on the server console, so if you run it from your own local machine, you will get to see more about how the matchings came to be.
 
 ### What design decisions I made
 
-I decided to use [Meteor](http://www.meteor.com/) because it is a server-side JavaScript (it's based on Node.js) framework that I've been interested in and this seems like a great opportunity to develop an app with it. Even if I don't land the apprenticeship, I would at least take with me the knowledge I gathered while writing this app :-].
+I decided to use [Meteor](http://www.meteor.com/) because it is a server-side JavaScript (it's based on Node.js) framework that I've been interested in and this seems like a great opportunity to develop an app with it. Even if I don't land the apprenticeship, I would at least take with me the knowledge I gathered while writing this app :-]. One cool side-effect of using Meteor is that you could have amy windows opened for the app (one in California, and another one in Melbourne for example), and the users will see pairings, people, teams and their relationships in real-time. The UI is automatically up to date, everywhere (assuming you haven't lost internet connectivity!).
 
 Meteor also allows me to easily deploy to the meteor.com servers so that you fine folks at IFTTT can just go to the app. No complicated installation on your side.
 
@@ -48,9 +48,40 @@ An idea I had, but that I didn't have time to go in and refactor things, is to a
 </pre>
 Maybe next time!
 
-The most interesting part of the app is the pairing algorithm. I like to start by mind-mapping it before writing actual code:
+#### Algorithm
+
+The most interesting part of the app is the pairing algorithm. The code for my algorithm can be found in the `server/pair.js` file. It is an interesting problem to solve. I'm using a "history buffer" (only grows as big as the maximum number of teammates a person can have) and recursion to try again when the history gets full.
+
+I started by mind-mapping it before writing actual code:
 <a href="https://dl.dropboxusercontent.com/u/74442973/Pairingprocess.png" target="_blank"><img src="https://dl.dropboxusercontent.com/u/74442973/Pairingprocess.png" style="width:600px"></a>
+The algorithm ended up a little different though. Instead of clearing all of a person's history at once, I decided to only take the oldest "pairing" out of the history; making it available again.
+
+The algorithm seems to do a good job overall. A big win is that is has no issues double-matching people that are in more than one team, for example. Still, it is not perfect as I had to stop somewhere before running out of time. One known issue is that it is possible for two people to be matched twice in a row:
+<pre>
+  Given the sample teams, I found this history in which William and Angela got matched twice in a row:
+
+  -=> Hardcore pairing action... <=-
+  => Sophia <> Ludwig
+  => Elizabeth <> Stacey
+  => William <> Angela
+  => Casey is doing a solo round
+  => Vinny is doing a solo round
+
+  -=> Hardcore pairing action... <=-
+  => Casey <> Ludwig
+  William seems to have met with everyone in their team, so lets call an old friend.
+  Teammates: fH5CxjmirdaTWP6mY,GAicokEWnsZcoJSZa,JH9WcSvRwC3XezzxW
+  History: fH5CxjmirdaTWP6mY
+  Already Paired:GAicokEWnsZcoJSZa,JH9WcSvRwC3XezzxW
+  => William <> Angela
+  => Vinny <> Stacey
+  => Sophia <> Elizabeth
+
+  This is because the first week, William and Angela got paired, and in the second week, Ludwig and Casey got paired before William got paired. Therefore, only Angela was left available in Team 2 for William, so the got paired twice in a row.
+</pre>
+
+I'd be interested to find out what the best solution looks like :-]
 
 ### How I tested my app
 
-Using fixtures to provide a stable starting point from which to begin the app and verify functionality.
+Using fixtures to provide a stable starting point from which to begin the app and verify functionality. Meteor also has a "reset" feature to clear the DB. That came in handy when testing things, but starting from a known state. Unfortunately, I did not have enough time to add unit tests. Sorry about that! With more time, I would have liked to do some unit tests to make sure the CRUD operations are correct, but mainly tests around the accuracy of the algorithm. For example, doing some stats on 1,000 pairing cycles and get info about speed, how often are folks paired twice in a row, what is the average distance between pairings of the same people, etc.
