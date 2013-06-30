@@ -1,10 +1,10 @@
 adminCurrentCollectionCursor = function() {
   switch (adminCurrentCollectionName()) {
     case 'People':
-      return People.find();
+      return People.find({}, {sort: {name: 1}});
       break;
     case 'Teams':
-      return Teams.find();
+      return Teams.find({}, {sort: {name: 1}});
       break;
   }
 }
@@ -12,10 +12,18 @@ adminCurrentCollectionCursor = function() {
 adminCurrentCollectionAdd = function(item) {
   switch (adminCurrentCollectionName()) {
     case 'People':
-      return Meteor.call('addPerson', item);
+      return Meteor.call('addPerson', item, function(error, id){
+        if (error) {
+          throwError(error.reason);
+        }
+      });
       break;
     case 'Teams':
-      return Meteor.call('addTeam', item);
+      return Meteor.call('addTeam', item, function(error, id){
+        if (error) {
+          throwError(error.reason);
+        }
+      });
       break;
   }
 }
