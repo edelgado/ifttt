@@ -1,6 +1,9 @@
 <template name="newItem">
   <form class="form-inline">
     <input type="text" class="input-small" placeholder="Name" name="item-name">
+    {{#if isPerson}}
+      <input type="email" class="input-small" placeholder="Email" name="item-email">
+    {{/if}}
     <button type="submit" class="btn">Add</button>
   </form>
 </template>

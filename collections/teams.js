@@ -5,6 +5,11 @@ Meteor.methods({
     Memberships.remove({teamId: id});
   },
   addTeam: function(aTeam) {
-    return Teams.insert(aTeam);
+    teamWithSameName = Teams.findOne({name: aTeam.name});
+    if (teamWithSameName) {
+      throw new Meteor.Error(409, 'A team with the same name already exists.');
+    }
+    var team = _.pick(aTeam, 'name');
+    return Teams.insert(team);
   }
 });
