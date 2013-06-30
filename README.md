@@ -48,6 +48,9 @@ An idea I had, but that I didn't have time to go in and refactor things, is to a
 </pre>
 Maybe next time!
 
+The most interesting part of the app is the pairing algorithm. I like to start by mind-mapping it before writing actual code:
+<a href="https://dl.dropboxusercontent.com/u/74442973/Pairingprocess.png" target="_blank"><img src="https://dl.dropboxusercontent.com/u/74442973/Pairingprocess.png" style="width:600px"></a>
+
 ### How I tested my app
 
 Using fixtures to provide a stable starting point from which to begin the app and verify functionality.
