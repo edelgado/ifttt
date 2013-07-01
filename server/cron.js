@@ -1,4 +1,4 @@
 var cronJob = Meteor.require('cron').CronJob;
-new cronJob('* * * * * *', function(){
-    console.log('You will see this message every second');
-}, null, true);
+//var job = new cronJob('*/10 * * * * *', function(){
+//    console.log('You will see this message every 10 seconds');
+//}, null, true);
