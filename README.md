@@ -7,6 +7,10 @@ Enrique Delgado's IFTTT Apprenticeship Project
 
 A mysterious benefactor offers to pay your bills for a year so you can work full-time on any programming project you want. What would you work on?
 
+This project has been quite an adventure. The process of trial and error was almost comical for me. Working with [Meteor](http://www.meteor.com/) (a Node.js-based framework) has been great, but at the same time it has revealed how much there is to learn still. Collections, Reactivity, Fibers, Templates, and so on!
+
+Because of that, if I had my bills paid for a year, I would try to grok Meteor and then become a contributor. That would be something I would certainly be proud of.
+
 ### Question 2
 
 Same mysterious benefactor, same sweet deal, but this time you're asked to work on a _non_-programming project. What would you work on?
