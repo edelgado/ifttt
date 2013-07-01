@@ -23,7 +23,9 @@ We are just beginning our understanding of the Colossal Squid in its natural hab
 
 ### Instructions on how to run and use the app
 
-Go to [ifttt.meteor.com](http://ifttt.meteor.com) or, if you have meteor installed, you can run it by typing `meteor` in the app directory. Then go to [http://localhost:3000/](http://localhost:3000/) to visit the app. The app outputs some interesting logs on the server console, so if you run it from your own local machine, you will get to see more about how the matchings came to be.
+The easiest way is to go to [ifttt.meteor.com](http://ifttt.meteor.com) and press the `Mix it up!` button to see the app in action.
+
+If you have meteor and meteorite installed, you can run `mrt` first to install any dependencies and then run the app locally it by typing `meteor` in the root of the project. Then go to [http://localhost:3000/](http://localhost:3000/) to visit the app. The app outputs some interesting logs on the server console, so if you run it from your own local machine, you will get to see more about how the matchings came to be.
 
 A note about emails: When running your application locally, emails messages are written to standard output, unless the `MAIL_URL` environment variable is set, per the [docs](http://docs.meteor.com/#email). Emails *will be sent* if you use the app via [ifttt.meteor.com](http://ifttt.meteor.com) so you may want to delete everyone and add folks with real email addresses if you want to test it out! :-]
 
