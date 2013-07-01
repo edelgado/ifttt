@@ -3,7 +3,7 @@
 var folksPaired;
 
 Meteor.methods({
-  pairFolks: function(id) {
+  pairFolks: function() {
     console.log('\n-=> Hardcore pairing action... <=-');
     // Reset:
     folksPaired = [];
@@ -131,3 +131,14 @@ var findCommonTeams = function(leftId, rightId) {
   return commonTeams;
 }
 
+var callWrapper = function() {
+  console.log('** Cron-activated pairing...');
+  Meteor.call('pairFolks');
+};
+/*
+var crone = new Meteor.Cron({
+  events: {
+    "* * * * *": callWrapper
+  }
+});
+*/

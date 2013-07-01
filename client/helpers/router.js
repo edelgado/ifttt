@@ -2,6 +2,7 @@ Meteor.Router.add({
   '/': 'assignments',
   '/people': 'peopleList',
   '/teams': 'teamList',
+  '/admin/scheduler': 'scheduler',
   '/admin/people': {
     as: 'adminPeople',
     to: 'adminList',

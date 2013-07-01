@@ -167,3 +167,8 @@ if (Pairings.find().count() === 0) {
   });
 }
 */
+if (AppConfig.find().count() === 0) {
+  AppConfig.insert({
+    cronString: '0 17 * * 5'
+  });
+}

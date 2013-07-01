@@ -1,0 +1,30 @@
+<template name="scheduler">
+  <div class="span12 info-pane">
+    <h3>How often should I mix things up?</h3>
+    <form>
+      <fieldset>
+        <legend>Schedule Settings</legend>
+        <label>Cron Value</label>
+        <input type="text" placeholder="0 17 * * 5" value="{{appConfig.cronString}}" name="cron-string">
+        <span class="help-block">Example block-level help text here.</span>
+        <button type="submit" class="btn btn-primary" id="save-button">Save</button>
+      </fieldset>
+    </form>
+      <p>The time and date fields are:</p>
+      <pre>    
+        field           allowed values
+        ------          --------------
+        minute          0-59
+        hour            0-23
+        day of month    1-31
+        month           1-12 (or names, see below)
+        day of week     0-7 (0 or 7 is Sun, or use names)
+        
+        Run once a year, ie.  "0 0 1 1 *".
+        Run once a month, ie. "0 0 1 * *".
+        Run once a week, ie.  "0 0 * * 0".
+        Run once a day, ie.   "0 0 * * *".
+        Run once an hour, ie. "0 * * * *".
+      </pre>
+  </div>
+</template>
