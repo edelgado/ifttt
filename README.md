@@ -21,7 +21,9 @@ We are just beginning our understanding of the Colossal Squid in its natural hab
 
 Go to [ifttt.meteor.com](http://ifttt.meteor.com) or, if you have meteor installed, you can run it by typing `meteor` in the app directory. Then go to [http://localhost:3000/](http://localhost:3000/) to visit the app. The app outputs some interesting logs on the server console, so if you run it from your own local machine, you will get to see more about how the matchings came to be.
 
-A note about emails: When running your application locally, emails messages are written to standard output, unless the `MAIL_URL` environment variable is set, per the [docs](http://docs.meteor.com/#email). Emails will be sent if you use the app via [ifttt.meteor.com](http://ifttt.meteor.com).
+A note about emails: When running your application locally, emails messages are written to standard output, unless the `MAIL_URL` environment variable is set, per the [docs](http://docs.meteor.com/#email). Emails *will be sent* if you use the app via [ifttt.meteor.com](http://ifttt.meteor.com) so you may want to delete everyone and add folks with real email addresses if you want to test it out! :-]
+
+Also, you will notice that there is a `Mix it up!` button. Pressing that button triggers the mix process (and emails!). See the section "Known Issues" below for more details as to why that is there.
 
 ### What design decisions I made
 
@@ -83,6 +85,13 @@ The algorithm seems to do a good job overall. A big win is that is has no issues
 </pre>
 
 I'd be interested to find out what the best solution looks like :-]
+
+### Known Issues
+
+Well, I wish I could say that my app has no issues, but I would not be an aspiring apprentice if I didn't need improvements!
+
+* Due to a last second problem with the cron mechanism in Node.js, The app does not actually do the mix automatically as specified in the Scheduler admin section. (I'm close to fixing it, but ran out of time!)
+* Like described above, sometimes two people can be paired twice in a row.
 
 ### How I tested my app
 
