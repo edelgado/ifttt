@@ -51,6 +51,9 @@ var selectOnePair = function(aPerson, index, allPeeps) {
     // Update the histories for both parties:
     addToHistory(aPerson._id, luckyWinnerId);
     addToHistory(luckyWinnerId, aPerson._id);
+    // Send email notifications:
+    pairingEmailNotification(aPerson._id, luckyWinnerId);
+    pairingEmailNotification(luckyWinnerId, aPerson._id);
     // Update the current state of pairings:
     Pairings.insert({
       teamId: _.first(findCommonTeams(aPerson._id, luckyWinnerId)),
@@ -65,6 +68,7 @@ var selectOnePair = function(aPerson, index, allPeeps) {
       // It's possible to be a lone ranger sometimes!
       console.log('=> ' + aPerson.name + ' is doing a solo round');
       UserMessages.insert({message: aPerson.name + ' is doing a solo round.'});
+      soloEmailNotification(aPerson._id)
       return;
     }
     // It wasn't that. Let's see if I have met with everyone in my team, then:
@@ -133,4 +137,23 @@ var findCommonTeams = function(leftId, rightId) {
   var rightTeamIds = teamIdsForPerson(rightId);
   var commonTeams = _.intersection(leftTeamIds, rightTeamIds);
   return commonTeams;
+}
+
+var pairingEmailNotification = function (leftId, rightId) {
+  var leftPerson  = People.findOne({_id: leftId});
+  var rightPerson = People.findOne({_id: rightId});
+  Meteor.call('sendEmail',
+              leftPerson.email,
+              'no-reply@meteor.com',
+              'Your 1+1!',
+              leftPerson.name + ', your 1+1 is ' + rightPerson.name + '. Thanks! ~1+1 Bot.');
+}
+
+var soloEmailNotification = function (personId) {
+  var thePerson  = People.findOne({_id: personId});
+  Meteor.call('sendEmail',
+              thePerson.email,
+              'no-reply@meteor.com',
+              'Your 1+1!',
+              thePerson.name + ', you are doing a solo round. Sorry! ~1+1 Bot.');
 }
