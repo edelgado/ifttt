@@ -1,6 +1,6 @@
 {
   "packages": {
-    "cron": {},
-    "router": {}
+    "router": {},
+    "npm": {}
   }
 }

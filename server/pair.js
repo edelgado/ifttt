@@ -17,11 +17,7 @@ Meteor.methods({
   },
   setCron: function(str) {
     console.log('Setting cron to: ' + str);
-    var crone = new Meteor.Cron({
-      events: {
-        str: callWrapper
-      }
-    });
+    // TODO
   }
 });
 
@@ -138,24 +134,3 @@ var findCommonTeams = function(leftId, rightId) {
   var commonTeams = _.intersection(leftTeamIds, rightTeamIds);
   return commonTeams;
 }
-
-var callWrapper = function() {
-  console.log('** Cron-activated pairing...');
-  Meteor.call('pairFolks');
-};
-
-var testTimeStuff = function() {
-  console.log('Howdy!');
-}
-
-var cronStr = AppConfig.findOne().cronString;
-//console.log(cronStr);
-cronStr = cronStr + '';
-
-var crone = new Meteor.Cron({
-  events: {
-    cronStr: callWrapper,
-    cronStr: testTimeStuff
-  }
-});
-//console.log(crone);
