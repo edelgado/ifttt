@@ -19,6 +19,7 @@ Template.scheduler.events({
             Meteor.setTimeout(function(){
               $('#save-button').removeClass('btn-success').addClass('btn-primary').html('Save');
             }, 1000);
+            Meteor.call('setCron', newString);
           }
         });
     

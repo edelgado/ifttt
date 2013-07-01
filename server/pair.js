@@ -14,6 +14,14 @@ Meteor.methods({
     var allPeeps = _.shuffle(People.find().fetch());
     // Select a pair for everyone in the organization:
     _.each(allPeeps, selectOnePair);
+  },
+  setCron: function(str) {
+    console.log('Setting cron to: ' + str);
+    var crone = new Meteor.Cron({
+      events: {
+        str: callWrapper
+      }
+    });
   }
 });
 
@@ -135,10 +143,19 @@ var callWrapper = function() {
   console.log('** Cron-activated pairing...');
   Meteor.call('pairFolks');
 };
-/*
+
+var testTimeStuff = function() {
+  console.log('Howdy!');
+}
+
+var cronStr = AppConfig.findOne().cronString;
+//console.log(cronStr);
+cronStr = cronStr + '';
+
 var crone = new Meteor.Cron({
   events: {
-    "* * * * *": callWrapper
+    cronStr: callWrapper,
+    cronStr: testTimeStuff
   }
 });
-*/
+//console.log(crone);
